@@ -35,8 +35,7 @@ class TokensController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Correct login',
-                'data' =>['token' => $token,
-                        'user' => User::where('email', $credentials['email'])->get()->first()]
+                'data' =>['token' => $token]
             ], 200);
         } else {
             return response()->json([
@@ -44,6 +43,16 @@ class TokensController extends Controller
                 'message' => 'Wrong credentials',
                 'data' => $validator->errors()], 401);
         }
+    }
+
+    public function me()
+    {
+        $credencials = JWTAuth::parseToken()->authenticate();
+        return response()->json([
+            'success' => true,
+            'message' => 'Correct login',
+            'data' =>['user' => $credencials]
+        ], 200);
     }
 
     public function refreshToken()

@@ -85,6 +85,7 @@ class UsuarioController extends Controller{
         try{
             $user = new User();
             $user->name=$entradas['name'];
+            $user->role=$entradas['role'];
             $user->assignRole($entradas['role']);
             $user->email=$entradas['email'];
             $user->password=bcrypt($entradas['password']);
@@ -183,7 +184,8 @@ class UsuarioController extends Controller{
                 $user->password = bcrypt($entradas['password']);
             }
             if($entradas['role']!=null){
-                //$user->removeRole($user->rol);
+                $user->removeRole($user->rol);
+                $user->role=$entradas['role'];
                 $user->assignRole($entradas['role']);
             }
             $user->save();

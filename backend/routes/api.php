@@ -20,6 +20,7 @@ Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'v1'], function () {
 Route::group(['middleware' => [], 'prefix' => 'v1'], function () {
     // Auth
     Route::post('/auth/login', 'TokensController@login');
+    Route::get('/auth/user', 'TokensController@me');
     Route::post('/auth/refresh', 'TokensController@refreshToken');
     Route::get('/auth/logout', 'TokensController@logoutToken');
 });

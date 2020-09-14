@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'role' => 'admin',
-            'password' => bcrypt('1234')
+            'password' => bcrypt('123456')
         ]);
         $admin->assignRole('admin');
 
@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
             'name' => 'hotel',
             'email' => 'hotel@gmail.com',
             'role' => 'hotel',
-            'password' => bcrypt('1234')
+            'password' => bcrypt('123456')
         ]);
         $hotel->assignRole('hotel');
 
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
             'name' => 'tour',
             'email' => 'tour@gmail.com',
             'role' => 'tour',
-            'password' => bcrypt('1234')
+            'password' => bcrypt('123456')
         ]);
         $tour->assignRole('tour');
 
@@ -42,7 +42,7 @@ class UserTableSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@gmail.com',
             'role' => 'user',
-            'password' => bcrypt('1234')
+            'password' => bcrypt('123456')
         ]);
         $user->assignRole('user');
 

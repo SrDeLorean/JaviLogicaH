@@ -8,20 +8,27 @@ export default{
                 "email": null,
                 "role": null
         },
+        config: {
+            headers: {
+                Authorization: ''
+            }
+        }
     },
 
     getters: {
         authenticated (state) {
-            return state.token && state.user
+            return state.token
         },
-
         user (state){
             return state.user
+        },
+        config (state){
+            return state.config
         }
     },
-
     mutations: {
         SET_TOKEN (state, token){
+            state.config.headers.Authorization = 'Bearer ' + state.usuario.token;
             state.token =token
         },
         SET_USER (state, user){
@@ -47,11 +54,7 @@ export default{
                 return
             }
             try {
-                let response = await axios.get('auth/user',{
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                })
+                let response = await axios.get('auth/user',state.config)
                 commit('SET_USER', response.data.data.user)
             }catch(e){
                 commit('SET_USER', {"name": null,
@@ -62,11 +65,7 @@ export default{
             }
         },
         logout({ commit, state }) {
-            return axios.get('auth/logout',{
-                    headers: {
-                        'Authorization': 'Bearer ' + state.token
-                    }
-                }).then(() =>{
+            return axios.get('auth/logout', state.config).then(() =>{
                     commit('SET_USER', {"name": null,
                                         "email": null,
                                         "role": null
